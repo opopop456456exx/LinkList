@@ -42,6 +42,7 @@ int LinkListAdd(tLinkList * header, int rank, int num)
 
 	p = header;
 	i = 0;
+
 	while ((p != NULL)&&(i<rank-1))
 	{
 		p = p->next;
@@ -126,5 +127,110 @@ int LinkListShow(tLinkList * header)
 	}
 
 	printf("\r\n****** End ******");
+	return TRUE;
+}
+
+
+
+/************************************************************************/
+/* Author   : DingFeng                     
+/* Data     : 2019/05/18
+/* Fuction	:
+/* Remarks	:
+/* Others	:
+/************************************************************************/
+int LinkListClear(tLinkList * header)
+{
+	tLinkList * p,*temp;
+
+	if (header == NULL)
+	{
+		return FALSE;
+	}
+	p = header;
+
+	while (p->next != NULL)
+	{
+		temp = p->next;
+		free(p);
+		p = temp;
+	}
+
+	if (p == NULL)
+	{
+		free(p);
+	}
+
+	return TRUE;
+
+}
+
+
+
+/************************************************************************/
+/* Author   : DingFeng                     
+/* Data     : 2019/05/18
+/* Fuction	:
+/* Remarks	:
+/* Others	:
+/************************************************************************/
+tLinkList *  LinkListFind(tLinkList * list,int data)
+{
+	tLinkList * p;
+
+	if ((list == NULL))
+	{
+		return NULL;
+	}
+	p = list;
+	while (p !=NULL)
+	{
+		if (p->data == data)
+		{
+			return p;
+		}
+		p = p->next;
+	}
+	return NULL;
+
+}
+
+/************************************************************************/
+/* Author   : DingFeng                     
+/* Data     : 2019/05/18
+/* Fuction	:
+/* Remarks	:
+/* Others	:
+/************************************************************************/
+int LinkListDeduplicate(tLinkList * header)
+{
+	tLinkList * p, *pa,*temp;
+
+	if ((header == NULL)||(header->next == NULL))
+	{
+		return FALSE;
+	}
+	p = header->next;
+
+	while (p != NULL)
+	{
+		temp = header;
+		pa = header->next;
+		while (pa != p)
+		{
+			if (pa->data == p->data)
+			{
+				temp->next = pa->next;
+				printf("\r\n		rm pa%d",pa->data);
+				free(pa);
+				break;
+			}
+			temp = pa;
+			pa = pa->next;
+
+		}
+		p = p->next;
+	}
+
 	return TRUE;
 }

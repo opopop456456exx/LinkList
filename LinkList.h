@@ -15,4 +15,8 @@ extern tLinkList * LinkListInit();
 extern int LinkListAdd(tLinkList * header,int rank,int num);
 extern int LinkListRemove(tLinkList * header, int rank);
 extern int LinkListShow(tLinkList * header);
+extern int LinkListClear(tLinkList * header);
+extern tLinkList * LinkListFind(tLinkList * list, int data);
+extern int LinkListDeduplicate(tLinkList * header);
+
 #endif
