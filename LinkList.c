@@ -235,4 +235,208 @@ int LinkListDeduplicate(tLinkList * header)
 	return TRUE;
 }
 
-//ddd
+//dddddddZZZZ
+//
+
+//LeetCode LinkList
+
+/** Initialize your data structure here. */
+
+MyLinkedList* myLinkedListCreate() {
+
+	MyLinkedList *header;
+	header = (MyLinkedList *)malloc(sizeof(MyLinkedList));
+	if(NULL == header)
+	{
+		printf("\r\nLinkInit Fail!");
+		return NULL;
+	}
+	header->val=0;
+	header->next=NULL;	
+	return header;
+}
+
+/** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
+int myLinkedListGet(MyLinkedList* obj, int index) {
+	int i;
+	MyLinkedList* header, *p;
+	header=obj;
+	if((index < 0)||(NULL == header->next))
+	{
+		printf("\r\nInvalid idx or obj!");
+		return -1;
+	}
+	p=header->next;
+	i=0;
+	while(i<index)
+	{
+		if(NULL != p->next)
+		{
+			p=p->next;
+		}
+		else
+		{
+			return -1;
+		}
+
+		i++;
+	}
+
+	return p->val;
+}
+
+/** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
+void myLinkedListAddAtHead(MyLinkedList* obj, int val) {
+  	int i;
+	MyLinkedList* header, *p;
+	header=obj;
+	if(NULL == header)
+	{
+		printf("\r\n err obj");
+		return;
+	}
+
+	p = (MyLinkedList *)malloc(sizeof(MyLinkedList));
+	if(NULL == p)
+	{
+		printf("\r\nAddHead malloc Fail!");
+		return ;
+	}
+
+	p->next = header->next;
+	p->val= val;
+	header->next = p;
+	return;
+}
+
+/** Append a node of value val to the last element of the linked list. */
+void myLinkedListAddAtTail(MyLinkedList* obj, int val) {
+  	int i;
+	MyLinkedList* header, *p,*q;
+	header=obj;
+	if(NULL == header)
+	{
+		printf("\r\n err obj");
+		return;
+	}
+
+	q=header;
+	p = (MyLinkedList *)malloc(sizeof(MyLinkedList));
+	if(NULL == p)
+	{
+		printf("\r\nAddTail molloc Fail!");
+		return ;
+	}
+	
+	p->val=val;
+	p->next=NULL;
+	while(NULL != q->next)
+	{
+		q=q->next;
+	}
+
+	q->next =p;
+}
+
+/** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
+void myLinkedListAddAtIndex(MyLinkedList* obj, int index, int val) {
+  	int i;
+	MyLinkedList* header, *p,*q;
+	header=obj;
+	if((index < 0)||(NULL == header))
+	{
+		printf("\r\nInvalid idx or obj!");
+		return ;
+	}
+
+	q = (MyLinkedList *)malloc(sizeof(MyLinkedList));
+	if(NULL == q)
+	{
+		printf("\r\nAddIdx molloc Fail!");
+		return ;
+	}
+	
+	q->val=val;
+
+	p=header;
+	i=0;
+	while(i<index)
+	{
+	
+		p=p->next;
+		if(p == NULL)
+		{
+			return;
+		}
+	
+		i++;
+	}
+
+	q->next=p->next;
+	p->next =q;
+	return;
+}
+
+/** Delete the index-th node in the linked list, if the index is valid. */
+void myLinkedListDeleteAtIndex(MyLinkedList* obj, int index) {
+  	int i;
+	MyLinkedList* header, *p,*q;
+	header=obj;
+	if((index < 0)||(NULL == header))
+	{
+		printf("\r\nInvalid idx or obj!");
+		return;
+	}
+
+	p=header;
+	i=0;
+	while(i<index)
+	{
+		if(NULL == p)
+		{
+			return;
+		}
+		p=p->next;
+
+		i++;
+	}
+	q=p->next;
+	p->next=q->next;
+	free(q);
+	return;
+}
+
+void myLinkedListFree(MyLinkedList* obj) {
+   
+	MyLinkedList* header, *p,*q;
+	header=obj;
+	if(NULL == header)
+	{
+		printf("\r\nInvalid idx or obj!");
+		return;
+	}
+	p=header;
+	while(NULL != p)
+	{
+		q=p->next;
+		free(p);
+		p=q;
+	}
+	return;
+}
+
+/**
+ * Your MyLinkedList struct will be instantiated and called as such:
+ * MyLinkedList* obj = myLinkedListCreate();
+ * int param_1 = myLinkedListGet(obj, index);
+ 
+ * myLinkedListAddAtHead(obj, val);
+ 
+ * myLinkedListAddAtTail(obj, val);
+ 
+ * myLinkedListAddAtIndex(obj, index, val);
+ 
+ * myLinkedListDeleteAtIndex(obj, index);
+ 
+ * myLinkedListFree(obj);
+*/
