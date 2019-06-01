@@ -8,7 +8,7 @@
 typedef struct tLinkList
 {
 	int data;
-	tLinkList* next;
+	struct tLinkList *next;
 }tLinkList;
 
 extern tLinkList * LinkListInit();
