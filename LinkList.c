@@ -400,6 +400,10 @@ void myLinkedListDeleteAtIndex(MyLinkedList* obj, int index) {
 
 		i++;
 	}
+	if(NULL == p->next)
+	{
+		return;
+	}
 	q=p->next;
 	p->next=q->next;
 	free(q);
