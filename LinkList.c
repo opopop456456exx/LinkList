@@ -235,6 +235,28 @@ int LinkListDeduplicate(tLinkList * header)
 	return TRUE;
 }
 
+struct tLinkList *reverseList(struct tLinkList * head)
+{
+	tLinkList *newhead, *p,*tmp;
+	if(NULL == head)	
+	{
+		printf("\r\n Err head!");
+		return NULL;
+	}
+	newhead=head;
+	p=head->next;
+	while(p != NULL)
+	{
+		head->next=p->next;
+		p->next=newhead;
+		newhead=p;
+		p=head->next;
+	}
+
+	return newhead;
+
+}
+
 //dddddddZZZZ
 //
 

@@ -24,7 +24,7 @@ extern int LinkListClear(tLinkList * header);
 extern tLinkList * LinkListFind(tLinkList * list, int data);
 extern int LinkListDeduplicate(tLinkList * header);
 
-
+extern struct tLinkList *reverseList(struct tLinkList *head);
 //LeetCode LinkList
 // 
 extern MyLinkedList* myLinkedListCreate();
